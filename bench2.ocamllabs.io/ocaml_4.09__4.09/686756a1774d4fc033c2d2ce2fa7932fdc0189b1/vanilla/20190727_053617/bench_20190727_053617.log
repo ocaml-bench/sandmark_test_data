@@ -1,0 +1,74 @@
+opam init --bare --no-setup --no-opamrc  ./dependencies
+[NOTE] Will configure from built-in defaults.
+Checking for available remotes: rsync and local, git, mercurial.
+  - you won't be able to use darcs repositories unless you install the darcs command on your system.
+
+
+<><> Fetching repository information ><><><><><><><><><><><><><><><><><><><><><>
+[default] Initialised
+Linking to system dune files found at: /home/ctk21/.opam/4.07.1
+/home/ctk21/.opam/4.07.1/bin/dune --version = 1.9.3
+ln -s /home/ctk21/.opam/4.07.1/bin/dune /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/sys_dune/bin/dune
+ln -s /home/ctk21/.opam/4.07.1/bin/jbuilder /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/sys_dune/bin/jbuilder
+ln -s /home/ctk21/.opam/4.07.1/lib/dune /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/sys_dune/lib/dune
+rm -rf dependencies/packages/ocaml/ocaml.4.09.0
+rm -rf dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.09.0
+mkdir -p dependencies/packages/ocaml/ocaml.4.09.0
+cp -R dependencies/template/ocaml/* dependencies/packages/ocaml/ocaml.4.09.0/
+mkdir -p dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.09.0
+cp -R dependencies/template/ocaml-base-compiler/* \
+  dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.09.0/
+{ url="$(cat ocaml-versions/4.09.0.comp)"; echo "url { src: \"$url\" }"; echo "setenv: [ [ ORUN_CONFIG_ocaml_url = \"$url\" ] ]"; } \
+  >> dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.09.0/opam
+opam update
+
+<><> Updating package repositories ><><><><><><><><><><><><><><><><><><><><><><>
+[default] synchronised from file:///local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/dependencies
+Now run 'opam upgrade' to apply any package updates.
+opam switch create --keep-build-dir --yes 4.09.0 ocaml-base-compiler.4.09.0
+
+<><> Gathering sources ><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[ocaml-base-compiler.4.09.0] downloaded from https://github.com/ocaml/ocaml/archive/686756a1774d4fc033c2d2ce2fa7932fdc0189b1.tar.gz
+
+<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+∗ installed base-bigarray.base
+∗ installed base-threads.base
+∗ installed base-unix.base
+[ERROR] The compilation of ocaml-base-compiler failed at "/local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/opam-init/hooks/sandbox.sh build make -j 5 world".
+
+#=== ERROR while compiling ocaml-base-compiler.4.09.0 =========================#
+# context              2.0.4 | linux/x86_64 |  | file:///local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/dependencies
+# path                 /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/4.09.0/.opam-switch/build/ocaml-base-compiler.4.09.0
+# command              /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/opam-init/hooks/sandbox.sh build make -j 5 world
+# exit-code            2
+# env-file             /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/log/ocaml-base-compiler-6078-d8a4ae.env
+# output-file          /local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/log/ocaml-base-compiler-6078-d8a4ae.out
+### output ###
+# 198 |   let lam = Simplif.simplify_lambda target_name lam in
+# [...]
+# Error: This function has type Lambda.lambda -> Lambda.lambda
+#        It is applied to too many arguments; maybe you forgot a `;'.
+# Makefile:1267: recipe for target 'bytecomp/bytepackager.cmo' failed
+# make[2]: *** [bytecomp/bytepackager.cmo] Error 2
+# make[2]: *** Waiting for unfinished jobs....
+# make[2]: Leaving directory '/local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/4.09.0/.opam-switch/build/ocaml-base-compiler.4.09.0'
+# Makefile:355: recipe for target 'coreall' failed
+# make[1]: *** [coreall] Error 2
+# make[1]: Leaving directory '/local/scratch/ctk21/back/20190726_/4.09/686756a1774d4fc033c2d2ce2fa7932fdc0189b1/sandmark/_opam/4.09.0/.opam-switch/build/ocaml-base-compiler.4.09.0'
+# Makefile:463: recipe for target 'world' failed
+# make: *** [world] Error 2
+
+
+
+<><> Error report <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+┌─ The following actions failed
+│ λ build ocaml-base-compiler 4.09.0
+└─ 
+┌─ The following changes have been performed (the rest was aborted)
+│ ∗ install base-bigarray base
+│ ∗ install base-threads  base
+│ ∗ install base-unix     base
+└─ 
+Switch initialisation failed: clean up? ('n' will leave the switch partially installed) [Y/n] y
+Makefile:64: recipe for target '_opam/4.09.0' failed
+make: *** [_opam/4.09.0] Error 31

@@ -1,0 +1,204 @@
+opam init --bare --no-setup --no-opamrc  ./dependencies
+[NOTE] Will configure from built-in defaults.
+Checking for available remotes: rsync and local, git, mercurial.
+  - you won't be able to use darcs repositories unless you install the darcs command on your system.
+
+
+<><> Fetching repository information ><><><><><><><><><><><><><><><><><><><><><>
+[default] Initialised
+Linking to system dune files found at: /home/ctk21/.opam/4.07.1
+/home/ctk21/.opam/4.07.1/bin/dune --version = 1.9.3
+ln -s /home/ctk21/.opam/4.07.1/bin/dune /local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/_opam/sys_dune/bin/dune
+ln -s /home/ctk21/.opam/4.07.1/bin/jbuilder /local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/_opam/sys_dune/bin/jbuilder
+ln -s /home/ctk21/.opam/4.07.1/lib/dune /local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/_opam/sys_dune/lib/dune
+rm -rf dependencies/packages/ocaml/ocaml.4.10.0
+rm -rf dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.0
+mkdir -p dependencies/packages/ocaml/ocaml.4.10.0
+cp -R dependencies/template/ocaml/* dependencies/packages/ocaml/ocaml.4.10.0/
+mkdir -p dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.0
+cp -R dependencies/template/ocaml-base-compiler/* \
+  dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.0/
+{ url="$(cat ocaml-versions/4.10.0.comp)"; echo "url { src: \"$url\" }"; echo "setenv: [ [ ORUN_CONFIG_ocaml_url = \"$url\" ] ]"; } \
+  >> dependencies/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.0/opam
+opam update
+
+<><> Updating package repositories ><><><><><><><><><><><><><><><><><><><><><><>
+[default] synchronised from file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/dependencies
+Now run 'opam upgrade' to apply any package updates.
+opam switch create --keep-build-dir --yes 4.10.0 ocaml-base-compiler.4.10.0
+
+<><> Gathering sources ><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[ocaml-base-compiler.4.10.0] downloaded from https://github.com/ocaml/ocaml/archive/05a2919cc06c42002ab5b9a381c92f41a611cd06.tar.gz
+
+<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+∗ installed base-bigarray.base
+∗ installed base-threads.base
+∗ installed base-unix.base
+∗ installed ocaml-base-compiler.4.10.0
+∗ installed ocaml-config.1
+∗ installed ocaml.4.10.0
+Done.
+opam pin add -n --yes --switch 4.10.0 orun orun/
+Package orun does not exist, create as a NEW package? [Y/n] y
+[orun.~dev: rsync]
+[orun.~dev] synchronised from file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/orun
+[WARNING] Failed checks on orun package definition from source at file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/orun:
+           warning 35: Missing field 'homepage'
+           warning 36: Missing field 'bug-reports'
+             error 42: The 'dev-repo:' field doesn't use version control. You should use URLs of the form "git://", "git+https://", "hg+https://"...
+orun is now pinned to file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/orun (version 0.1)
+
+<><> Updating package repositories ><><><><><><><><><><><><><><><><><><><><><><>
+[default] no changes from file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/dependencies
+
+<><> Synchronising development packages <><><><><><><><><><><><><><><><><><><><>
+[orun.0.1] no changes from file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/orun
+opam install --switch=4.10.0 --best-effort --keep-build-dir --yes cpdf menhir minilight camlimages yojson lwt ctypes orun cil frama-c alt-ergo zarith js_of_ocaml-compiler uuidm react ocplib-endian nbcodec checkseum decompress || true
+
+<><> Synchronising pinned packages ><><><><><><><><><><><><><><><><><><><><><><>
+[orun.0.1] no changes from file:///local/scratch/ctk21/back/20190726_/trunk/05a2919cc06c42002ab5b9a381c92f41a611cd06/sandmark/orun
+
+The following actions will be performed:
+  ∗ install conf-gmp             1          [required by zarith]
+  ∗ install conf-m4              1          [required by ocamlfind]
+  ∗ install conf-perl            1          [required by zarith]
+  ∗ install seq                  base       [required by alt-ergo-lib]
+  ∗ install dune                 1.7.1      [required by js_of_ocaml-compiler, checkseum, decompress, yojson]
+  ∗ install cmdliner             1.0.3      [required by orun, decompress, checkseum, etc.]
+  ∗ install minilight            1.6
+  ∗ install ocamlbuild           0.12.0     [required by react, nbcodec, cil, etc.]
+  ∗ install ocamlfind            1.8.0      [required by uuidm, ocplib-endian, menhir, etc.]
+  ∗ install optint               0.0.2      [required by checkseum, decompress]
+  ∗ install jbuilder             transition [required by camlimages, lwt]
+  ∗ install uchar                0.0.2      [required by fmt]
+  ∗ install zarith               1.7
+  ∗ install ocamlgraph           1.8.8      [required by frama-c]
+  ∗ install num                  1.1        [required by cil]
+  ∗ install nbcodec              20151119
+  ∗ install menhir               20181113
+  ∗ install camlpdf              2.2.1      [required by cpdf]
+  ∗ install base-bytes           base       [required by ocplib-endian, ctypes, checkseum, etc.]
+  ∗ install result               1.3        [required by lwt]
+  ∗ install easy-format          1.3.1      [required by yojson]
+  ∗ install cppo                 1.6.5      [required by ocplib-endian, js_of_ocaml-compiler, camlimages, etc.]
+  ∗ install ocplib-simplex       0.4        [required by alt-ergo-lib]
+  ∗ install cil                  1.7.3
+  ∗ install psmt2-frontend       0.2        [required by alt-ergo-parsers]
+  ∗ install cpdf                 2.2.1
+  ∗ install topkg                1.0.0      [required by react, uuidm]
+  ∗ install biniou               1.2.0      [required by yojson]
+  ∗ install ocplib-endian        1.0
+  ∗ install lwt                  4.1.0                                                                          For the PPX, please install package lwt_ppx
+                                                                                                                For Lwt_log and Lwt_daemon, please install package lwt_log
+  ∗ install camlimages           5.0.1
+  ∗ install alt-ergo-lib         2.3.0      [required by alt-ergo]
+  ∗ install uuidm                0.9.6
+  ∗ install rresult              0.6.0      [required by checkseum]
+  ∗ install react                1.2.1
+  ∗ install integers             0.2.2      [required by ctypes]
+  ∗ install fmt                  0.8.5      [required by checkseum]
+  ∗ install yojson               1.7.0
+  ∗ install alt-ergo-parsers     2.3.0      [required by alt-ergo]
+  ∗ install ctypes               0.14.0
+  ∗ install checkseum            0.0.3
+  ∗ install orun                 0.1*
+  ∗ install js_of_ocaml-compiler 3.3.0
+  ∗ install alt-ergo             2.3.0
+  ∗ install decompress           0.8.1
+  ∗ install frama-c              18.0                                                                           Why3 can be used by the WP plug-in for running additional automatic solvers
+                                                                                                                Coq can be used with the WP plug-in for proving interactively proof obligations
+===== ∗ 46 =====
+
+<><> Gathering sources ><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[alt-ergo.2.3.0] downloaded from cache at https://opam.ocaml.org/cache/
+[biniou.1.2.0] downloaded from cache at https://opam.ocaml.org/cache/
+[camlimages.5.0.1] downloaded from cache at https://opam.ocaml.org/cache/
+[alt-ergo-lib.2.3.0] downloaded from cache at https://opam.ocaml.org/cache/
+[checkseum.0.0.3] downloaded from cache at https://opam.ocaml.org/cache/
+[camlpdf.2.2.1] downloaded from cache at https://opam.ocaml.org/cache/
+[alt-ergo-parsers.2.3.0] downloaded from cache at https://opam.ocaml.org/cache/
+[cmdliner.1.0.3] downloaded from cache at https://opam.ocaml.org/cache/
+[cil.1.7.3] downloaded from cache at https://opam.ocaml.org/cache/
+[cppo.1.6.5] downloaded from cache at https://opam.ocaml.org/cache/
+[decompress.0.8.1] downloaded from cache at https://opam.ocaml.org/cache/
+[cpdf.2.2.1] downloaded from cache at https://opam.ocaml.org/cache/
+[ctypes.0.14.0] downloaded from cache at https://opam.ocaml.org/cache/
+[easy-format.1.3.1] downloaded from cache at https://opam.ocaml.org/cache/
+[fmt.0.8.5] downloaded from cache at https://opam.ocaml.org/cache/
+[integers.0.2.2] downloaded from cache at https://opam.ocaml.org/cache/
+[lwt.4.1.0] downloaded from cache at https://opam.ocaml.org/cache/
+[js_of_ocaml-compiler.3.3.0] downloaded from cache at https://opam.ocaml.org/cache/
+[frama-c.18.0] downloaded from cache at https://opam.ocaml.org/cache/
+[minilight.1.6] downloaded from cache at https://opam.ocaml.org/cache/
+[menhir.20181113] downloaded from cache at https://opam.ocaml.org/cache/
+[nbcodec.20151119] downloaded from https://github.com/dbuenzli/nbcodec/archive/54ede66d0f552628625c9e0599df592bda63ab2e.tar.gz
+[num.1.1] downloaded from cache at https://opam.ocaml.org/cache/
+[ocamlbuild.0.12.0] downloaded from cache at https://opam.ocaml.org/cache/
+[ocamlfind.1.8.0] downloaded from https://gitlab.camlcity.org/gerd/lib-findlib/-/archive/50b56eab2caeef781bf59dd94df70935bfea1a5a/lib-findlib-50b56eab2caeef781bf59dd94df70935bfea1a5a.tar.gz
+[ocamlgraph.1.8.8] downloaded from cache at https://opam.ocaml.org/cache/
+[ocplib-endian.1.0] downloaded from cache at https://opam.ocaml.org/cache/
+[ocplib-simplex.0.4] downloaded from cache at https://opam.ocaml.org/cache/
+[optint.0.0.2] downloaded from cache at https://opam.ocaml.org/cache/
+[psmt2-frontend.0.2] downloaded from cache at https://opam.ocaml.org/cache/
+[react.1.2.1] downloaded from cache at https://opam.ocaml.org/cache/
+[result.1.3] downloaded from cache at https://opam.ocaml.org/cache/
+[rresult.0.6.0] downloaded from cache at https://opam.ocaml.org/cache/
+[uchar.0.0.2] downloaded from cache at https://opam.ocaml.org/cache/
+[topkg.1.0.0] downloaded from cache at https://opam.ocaml.org/cache/
+[uuidm.0.9.6] downloaded from cache at https://opam.ocaml.org/cache/
+[yojson.1.7.0] downloaded from cache at https://opam.ocaml.org/cache/
+[zarith.1.7] downloaded from cache at https://opam.ocaml.org/cache/
+
+<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+∗ installed conf-gmp.1
+∗ installed conf-perl.1
+∗ installed dune.1.7.1
+∗ installed conf-m4.1
+∗ installed jbuilder.transition
+∗ installed cppo.1.6.5
+∗ installed easy-format.1.3.1
+∗ installed minilight.1.6
+∗ installed optint.0.0.2
+∗ installed result.1.3
+∗ installed seq.base
+∗ installed cmdliner.1.0.3
+∗ installed biniou.1.2.0
+∗ installed ocamlfind.1.8.0
+∗ installed base-bytes.base
+∗ installed lwt.4.1.0
+∗ installed num.1.1
+∗ installed camlimages.5.0.1
+∗ installed ocamlbuild.0.12.0
+∗ installed camlpdf.2.2.1
+∗ installed nbcodec.20151119
+∗ installed ocamlgraph.1.8.8
+∗ installed ocplib-endian.1.0
+∗ installed ocplib-simplex.0.4
+∗ installed topkg.1.0.0
+∗ installed cpdf.2.2.1
+∗ installed integers.0.2.2
+∗ installed react.1.2.1
+∗ installed rresult.0.6.0
+∗ installed uchar.0.0.2
+∗ installed uuidm.0.9.6
+∗ installed yojson.1.7.0
+∗ installed fmt.0.8.5
+∗ installed checkseum.0.0.3
+∗ installed js_of_ocaml-compiler.3.3.0
+∗ installed orun.0.1
+∗ installed zarith.1.7
+∗ installed decompress.0.8.1
+∗ installed cil.1.7.3
+∗ installed alt-ergo-lib.2.3.0
+∗ installed menhir.20181113
+∗ installed ctypes.0.14.0
+∗ installed psmt2-frontend.0.2
+∗ installed alt-ergo-parsers.2.3.0
+∗ installed alt-ergo.2.3.0
+∗ installed frama-c.18.0
+Done.
+
+<><> jbuilder.transition installed successfully <><><><><><><><><><><><><><><><>
+=> Jbuilder has been renamed and the jbuilder package is now a transition package. Use the dune package instead.
+taskset --cpu-list 3 setarch x86_64 --addr-no-randomize opam exec --switch 4.10.0 -- dune build -j 1 --profile=release --workspace=ocaml-versions/.workspace.4.10.0 @bench; \
+  ex=$?; find _build/4.10.0_* -name '*.bench' | xargs cat > ocaml-versions/4.10.0.bench; exit $ex

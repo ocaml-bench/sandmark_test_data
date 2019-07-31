@@ -1,1 +1,2 @@
-# sandmark_test_data
+Location for test data from http://bench2.ocamllabs.io/ 
+
